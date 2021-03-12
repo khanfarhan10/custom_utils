@@ -6,6 +6,10 @@ Github : @khanfarhan10
 Original File at : https://github.com/khanfarhan10/custom_utils/
 """
 import os
+import zipfile
+import os
+import shutil
+
 
 def create_dir(dir, v=1):
     """
@@ -22,3 +26,27 @@ def create_dir(dir, v=1):
         if v:
             print("Directory already existed : ", dir)
         return 0
+
+
+def DeleteFolderContents(dir):
+    shutil.rmtree(dir)
+    create_dir(dir)
+
+
+"""
+Utility for Compressing Directories to .zip file
+zipper('/content/MAIN/Train', "Zipped_Data.zip")
+"""
+
+
+def zipdir(path, ziph):
+    # ziph is zipfile handle
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            ziph.write(os.path.join(root, file))
+
+
+def zipper(dir_path, zip_path):
+    zipf = zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED)
+    zipdir(dir_path, zipf)
+    zipf.close()
