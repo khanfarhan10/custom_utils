@@ -5,7 +5,7 @@ Author : Farhan Hai Khan
 Github : @khanfarhan10
 Original File at : https://github.com/khanfarhan10/custom_utils/
 """
-
+import os
 
 def create_dir(dir, v=1):
     """
