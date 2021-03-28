@@ -29,9 +29,21 @@ def create_dir(dir, v=1):
 
 
 def DeleteFolderContents(dir):
+    """Delete the contents of a folder without deleting the folder itself"""
+    create_dir(dir)
     shutil.rmtree(dir)
     create_dir(dir)
 
+def print_list(lst):
+  """ Pretty Fancy way to print a list"""
+  for e in lst:
+    print(e)
+
+def getBaseNameNoExt(givenPath):
+    """Returns the basename of the file without the extension"""
+    filename = os.path.splitext(os.path.basename(givenPath))[0]
+    return filename
+  
 
 """
 Utility for Compressing Directories to .zip file
