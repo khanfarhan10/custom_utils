@@ -43,7 +43,9 @@ def getBaseNameNoExt(givenPath):
     """Returns the basename of the file without the extension"""
     filename = os.path.splitext(os.path.basename(givenPath))[0]
     return filename
-  
+def subtract_lists(x,y):
+    """Subtract Two Lists (List Difference)"""
+    return [item for item in x if item not in y]
 
 """
 Utility for Compressing Directories to .zip file
