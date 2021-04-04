@@ -48,9 +48,34 @@ def getBaseNameNoExt(givenPath):
     """Returns the basename of the file without the extension"""
     filename = os.path.splitext(os.path.basename(givenPath))[0]
     return filename
+
 def subtract_lists(x,y):
     """Subtract Two Lists (List Difference)"""
     return [item for item in x if item not in y]
+
+import os
+
+def create_dir(dir, v=1):
+    """
+    Creates a directory without throwing an error if directory already exists.
+    dir : The directory to be created.
+    v : Verbosity
+    """
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+        if v:
+            print("Created Directory : ", dir)
+        return 1
+    else:
+        if v:
+            print("Directory already existed : ", dir)
+        return 0
+def save_viz(VizName,plotvar,VizPath= None,dotsperinches = 600):
+    if VizPath is None:
+        ROOT_DIR = os.getcwd()
+        VizPath = os.path.join(ROOT_DIR,"Visualizations")
+    create_dir(VizPath,v=0)
+    plotvar.savefig(os.path.join(VizPath,str(VizName)+'.png'),dpi=dotsperinches)
 
 """
 Utility for Compressing Directories to .zip file
