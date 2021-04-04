@@ -34,6 +34,11 @@ def DeleteFolderContents(dir):
     shutil.rmtree(dir)
     create_dir(dir)
 
+def merge_list_to_dict(test_keys,test_values):
+  """Using dictionary comprehension to merge two lists to dictionary"""
+  merged_dict = {test_keys[i]: test_values[i] for i in range(len(test_keys))}
+  return merged_dict
+
 def print_list(lst):
   """ Pretty Fancy way to print a list"""
   for e in lst:
