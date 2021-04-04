@@ -78,6 +78,12 @@ def save_viz(VizName,plotvar,VizPath= None,dotsperinches = 600):
     plotvar.savefig(os.path.join(VizPath,str(VizName)+'.png'),dpi=dotsperinches)
 
 """
+Ignore Python Warnings
+"""
+import warnings
+warnings.filterwarnings("ignore")
+    
+"""
 Utility for Compressing Directories to .zip file
 zipper('/content/MAIN/Train', "Zipped_Data.zip")
 """
