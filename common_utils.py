@@ -197,3 +197,7 @@ Mount Google Drive
 """
 from google.colab import drive
 drive.mount('/content/drive')
+"""
+Download files with the help of ID from Google Drive
+"""
+!gdown --id yourFileIdHere
