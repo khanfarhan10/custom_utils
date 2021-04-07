@@ -76,6 +76,95 @@ def save_viz(VizName,plotvar,VizPath= None,dotsperinches = 600):
         VizPath = os.path.join(ROOT_DIR,"Visualizations")
     create_dir(VizPath,v=0)
     plotvar.savefig(os.path.join(VizPath,str(VizName)+'.png'),dpi=dotsperinches)
+    
+def getExtension(filepath):
+  """Returns the extension of the given filepath"""
+  complete_filename, file_extension = os.path.splitext(filepath)
+  return file_extension
+
+def countExtensions(ListofPaths):
+  """Returns a dictionary of element counts present in the directory"""
+  files = dict()
+  for each in ListofPaths:
+    extension = getExtension(each)
+    if extension not in files:
+      files[extension]=1
+    else:
+      files[extension]=files[extension]+1
+  return files
+"""
+Usage :
+countExtensions(ListofPaths=os.listdir(cvd))
+"""
+
+
+import os
+def get_size(path = os.getcwd()):
+    """Get the Size of Folder/File"""
+    print("Calculating Size: ",path)
+    total_size = 0
+    #if path is directory--
+    if os.path.isdir(path):
+      print("Path type : Directory/Folder")
+      for dirpath, dirnames, filenames in os.walk(path):
+          for f in filenames:
+              fp = os.path.join(dirpath, f)
+              # skip if it is symbolic link
+              if not os.path.islink(fp):
+                  total_size += os.path.getsize(fp)
+    #if path is a file---
+    elif os.path.isfile(path):
+      print("Path type : File")
+      total_size=os.path.getsize(path)
+    else:
+      print("Path Type : Special File (Socket, FIFO, Device File)" )
+      total_size=0
+    bytesize=total_size
+    print(bytesize, 'bytes')
+    print(bytesize/(1024), 'kilobytes')
+    print(bytesize/(1024*1024), 'megabytes')
+    print(bytesize/(1024*1024*1024), 'gegabytes')
+    return total_size
+
+
+x=get_size("/content/examples")
+
+"""
+Kaggle Datasets Download in Colab:
+!pip install kaggle
+
+import os
+os.makedirs("/content/.kaggle/")
+
+import json
+token = {"username":"farhanhaikhan","key":"f2c0df223af325f0d811a0f18b0c02ca"}
+with open('/content/.kaggle/kaggle.json', 'a+') as file:
+    json.dump(token, file)
+
+import shutil
+os.makedirs("/.kaggle/")
+src="/content/.kaggle/kaggle.json"
+des="/.kaggle/kaggle.json"
+shutil.copy(src,des)
+
+
+os.makedirs("/root/.kaggle/")
+!cp /content/.kaggle/kaggle.json ~/.kaggle/kaggle.json
+
+!kaggle config set -n path -v /content
+
+#https://towardsdatascience.com/setting-up-kaggle-in-google-colab-ebb281b61463
+
+!kaggle competitions download -c digit-recognizer
+
+!kaggle datasets download -d tawsifurrahman/covid19-radiography-database
+
+!unzip -q covid19-radiography-database.zip -d /content/dataset
+
+src="/content/Dataset.zip"
+des="/content/DATA/"
+get_ipython().system('unzip -q {} -d {}'.format(src,des))
+"""
 
 """
 Ignore Python Warnings
