@@ -191,3 +191,9 @@ def zipper(dir_path, zip_path):
     zipf = zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED)
     zipdir(dir_path, zipf)
     zipf.close()
+
+"""
+Mount Google Drive
+"""
+from google.colab import drive
+drive.mount('/content/drive')
