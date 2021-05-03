@@ -10,6 +10,22 @@ import zipfile
 import os
 import shutil
 
+def logger(*argv,logfile="log.txt",singleLine = False):
+  """
+  Writes Logs to LogFile
+  """
+  with open(logfile, 'a+') as f:
+    for arg in argv:
+      if type(arg) == dict:
+        for key,val in arg.items():
+          f.write(str(key) + " : "+ str(val))
+          f.flush()
+      else:
+        f.write(str(arg))
+        f.flush()
+      if singleLine==False:
+        f.write("\n")
+
 
 def create_dir(dir, v=1):
     """
