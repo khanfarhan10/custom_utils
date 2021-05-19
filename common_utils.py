@@ -5,6 +5,18 @@ Author : Farhan Hai Khan
 Github : @khanfarhan10
 Original File at : https://github.com/khanfarhan10/custom_utils/
 """
+import os, fnmatch
+def find(pattern, path):
+    """Utility to find files wrt a regex search"""
+    result = []
+    for root, dirs, files in os.walk(path):
+        for name in files:
+            if fnmatch.fnmatch(name, pattern):
+                result.append(os.path.join(root, name))
+    return result
+FIND_FOLDER=os.getcwd()
+zip_files=find('*.zip', FIND_FOLDER)
+
 import os
 import zipfile
 import os
