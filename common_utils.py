@@ -229,3 +229,66 @@ drive.mount('/content/drive')
 Download files with the help of ID from Google Drive
 """
 !gdown --id yourFileIdHere
+
+
+import matplotlib.pyplot as plt
+%matplotlib inline
+# helper function for data visualization
+def visualize(**images):
+    """PLot images in one row."""
+    n = len(images)
+    plt.figure(figsize=(20, 12))
+    for i, (name, image) in enumerate(images.items()):
+        plt.subplot(1, n, i + 1)
+        plt.axis('off')
+        plt.xticks([])
+        plt.yticks([])
+        plt.title(' '.join(name.split('_')).title())
+        length = len(image.shape)
+        if length==3:
+            plt.imshow(image)
+        else:
+            plt.imshow(image,cmap="viridis")
+    plt.show()
+    
+visualize(
+    image=image, 
+    building_mask=mask[..., 0].squeeze(),
+    crops_mask=mask[..., 1].squeeze(),
+    hill_mask=mask[...,2 ].squeeze(),
+    # background_mask=mask[...,3 ].squeeze(),
+)
+
+import os
+import zipfile
+import shutil
+
+#taken from : https://www.kaggle.com/xhlulu/recursion-2019-load-resize-and-save-images
+
+def zip_and_remove(path):
+    ziph = zipfile.ZipFile(f'{path}.zip', 'w', zipfile.ZIP_DEFLATED)
+    
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            file_path = os.path.join(root, file)
+            ziph.write(file_path)
+            os.remove(file_path)
+    
+    ziph.close()
+    shutil.rmtree(path)
+    
+
+for each_path in os.listdir("./"):
+    if os.path.isdir(each_path):
+        zip_and_remove(each_path)
+
+CLASS_MAPPINGS = {v: k for k, v in CLASS_LABELLINGS.items()}
+CLASS_MAPPINGS
+def merge_list_to_dict(test_keys,test_values):
+  """Using dictionary comprehension to merge two lists to dictionary"""
+  merged_dict = {test_keys[i]: test_values[i] for i in range(len(test_keys))}
+  return merged_dict
+
+CLASSES = ['background','building','crops', 'hills']
+VALUE_LABELS = list(range(len(CLASSES)))
+CLASS_LABELLINGS = merge_list_to_dict(CLASSES,VALUE_LABELS)
