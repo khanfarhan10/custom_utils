@@ -292,3 +292,13 @@ def merge_list_to_dict(test_keys,test_values):
 CLASSES = ['background','building','crops', 'hills']
 VALUE_LABELS = list(range(len(CLASSES)))
 CLASS_LABELLINGS = merge_list_to_dict(CLASSES,VALUE_LABELS)
+
+import os
+def advanced_listdir(direc):
+    x = os.listdir(direc)
+    new = []
+    for e in x:
+        new.append(os.path.join(direc,e))
+    return new
+ROOT_DIR = os.getcwd()
+advanced_listdir(ROOT_DIR)
