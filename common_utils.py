@@ -5,6 +5,12 @@ Author : Farhan Hai Khan
 Github : @khanfarhan10
 Original File at : https://github.com/khanfarhan10/custom_utils/
 """
+def props(img,show_uniques=True):
+    print("Shape :",img.shape,"Maximum :",img.max(),"Minimum :",img.min())
+    if show_uniques:
+        print("Uniques :",np.unique(img))
+
+
 import os, fnmatch
 def find(pattern, path):
     """Utility to find files wrt a regex search"""
