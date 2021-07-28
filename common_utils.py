@@ -6,7 +6,7 @@ Github : @khanfarhan10
 Original File at : https://github.com/khanfarhan10/custom_utils/
 """
 def props(img,show_uniques=True):
-    print("Shape :",img.shape,"Maximum :",img.max(),"Minimum :",img.min())
+    print("Shape :",img.shape,"Maximum :",img.max(),"Minimum :",img.min(),"Data Type :",img.dtype)
     if show_uniques:
         print("Uniques :",np.unique(img))
 
