@@ -5,6 +5,18 @@ Author : Farhan Hai Khan
 Github : @khanfarhan10
 Original File at : https://github.com/khanfarhan10/custom_utils/
 """
+def merge_list_to_dict(test_keys,test_values):
+  """Using dictionary comprehension to merge two lists to dictionary"""
+  merged_dict = {test_keys[i]: test_values[i] for i in range(len(test_keys))}
+  return merged_dict
+
+def sort_dict_elements_all(data, on_key = "confidence", reverse = True):
+    list_of_keys = list(data.keys())
+    list_of_values = list(data.values())
+    item_index = list_of_keys.index(on_key)
+    sorted_list_of_values = list(map(list, list(zip(*sorted(zip(*list_of_values), key=lambda sublist_to_sort_by: sublist_to_sort_by[item_index], reverse = reverse) ))))
+    
+    return merge_list_to_dict(test_keys = list_of_keys, test_values = sorted_list_of_values)
 import os
 def get_size(path = os.getcwd(), v= 0):
     """Get the Size of Folder/File, v = verbosity"""
