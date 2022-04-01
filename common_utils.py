@@ -356,3 +356,21 @@ def advanced_listdir(direc):
     return new
 ROOT_DIR = os.getcwd()
 advanced_listdir(ROOT_DIR)
+
+
+import orjson
+import os
+os.makedirs(SAVE_PATH, exist_ok=True)
+
+def pretty_view_dict(normal_dict):
+    print(orjson.dumps(normal_dict, option=orjson.OPT_INDENT_2).decode('utf-8'))
+
+def read_json_file(fpath):
+    with open(fpath, "r") as f:
+        data = orjson.loads(f.read())
+    return data
+
+def write_json_file(fpath, data):
+    with open(fpath, "wb") as f:
+        f.write(orjson.dumps(data, option= orjson.OPT_INDENT_2))
+    return True
