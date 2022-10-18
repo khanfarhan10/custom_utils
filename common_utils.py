@@ -372,5 +372,5 @@ def read_json_file(fpath):
 
 def write_json_file(fpath, data):
     with open(fpath, "wb") as f:
-        f.write(orjson.dumps(data, option= orjson.OPT_INDENT_2))
+        f.write(orjson.dumps(data, option= orjson.OPT_INDENT_2 | orjson.OPT_NON_STR_KEYS | orjson.OPT_SERIALIZE_NUMPY))
     return True
